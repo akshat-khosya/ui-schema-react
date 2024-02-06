@@ -1,13 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
 import RoutesWrapper from './pages/RoutesWrapper';
-
+import { StyledEngineProvider } from '@mui/material/styles';
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <RoutesWrapper />
-      </BrowserRouter>
+      <StyledEngineProvider injectFirst>
+        <BrowserRouter>
+          <RoutesWrapper />
+        </BrowserRouter>
+      </StyledEngineProvider>
     </>
   );
 }
