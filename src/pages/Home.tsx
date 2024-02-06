@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import JsonEditor from '../components/JsonEditor';
 import { Typography } from '@mui/material';
+import JsonForm from '../components/JsonForm';
 
 function Home() {
 
@@ -27,8 +28,9 @@ function Home() {
                     height: '100%',
                     overflowY: 'auto',
                 }}>
-                    {/* JSON rendering form */}
-                    JSON Rendering Form
+                    <Typography>JSON Rendering Form</Typography>
+
+                    <JsonForm />
                 </Paper>
             </Grid>
         </Grid>

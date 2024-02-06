@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import InputField from './Form/InputField'
+import GlobalContext from '../context/GlobalContext';
 
 function JsonForm() {
+    const { uiJson } = useContext(GlobalContext);
     return (
-        <div>JsonForm</div>
+        <>
+            {
+                uiJson.map((data, index) => {
+                    return (
+                        <>
+                            {
+                                data.uiType === 'Input' && <InputField fields={data} key={index} />
+                            }
+                        </>
+                    )
+                })
+            }
+
+        </>
+
     )
 }
 
