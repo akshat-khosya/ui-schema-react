@@ -1,13 +1,15 @@
 import { Editor } from "@monaco-editor/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { UIObject, isValidUIObject } from "../utils/jsonValidation";
+import GlobalContext from "../context/GlobalContext";
 
 
 const JsonEditor: React.FC = () => {
+    const { uiJson, setUIJSON } = useContext(GlobalContext)
     const json = localStorage.getItem('json');
-    const [jsonValue, setJsonValue] = useState<string>(json ? json : '{}');
+    const [jsonValue, setJsonValue] = useState<string>(json ? json : JSON.stringify(uiJson, null, 2));
 
     const handleEditorChange = (value: string | undefined, event: any) => {
         if (value) {
@@ -43,7 +45,7 @@ const JsonEditor: React.FC = () => {
                     return 0;
                 }
             });
-            console.log(sortedArray);
+            setUIJSON(sortedArray);
         } catch (error) {
             toast.error((error as Error).message);
         }
@@ -56,6 +58,7 @@ const JsonEditor: React.FC = () => {
                 defaultLanguage="json"
                 defaultValue={jsonValue}
                 onChange={handleEditorChange}
+                options={{ formatOnPaste: true, formatOnType: true, automaticLayout: true }}
             />
         </>
 
