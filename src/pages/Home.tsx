@@ -7,10 +7,9 @@ import JsonForm from '../components/JsonForm';
 import DynamicForm from '../components/DynamicForm';
 
 function Home() {
-
     return (
-        <Grid container spacing={2} style={{ height: '100vh' }}>
-            <Grid item xs={6}>
+        <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
                 <Paper style={{
                     padding: '16px',
                     textAlign: 'center',
@@ -21,7 +20,7 @@ function Home() {
                     <JsonEditor />
                 </Paper>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
                 <Paper style={{
                     padding: '16px',
                     textAlign: 'center',
@@ -30,8 +29,6 @@ function Home() {
                     overflowY: 'auto'
                 }}>
                     <Typography>JSON Rendering Form</Typography>
-
-                    {/* <JsonForm /> */}
                     <DynamicForm />
                 </Paper>
             </Grid>
