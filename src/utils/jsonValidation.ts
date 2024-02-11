@@ -12,12 +12,13 @@ interface UIObject {
       icon: string;
     }[];
     pattern?: RegExp;
-    defaultValue?: string;
+    defaultValue?: string | boolean;
   };
   jsonKey: string;
   uiType: string;
   level: number;
   placeholder?: string;
+  subParameters?: UIObject[];
 }
 
 export const isValidUIObject = (obj: any): obj is UIObject => {

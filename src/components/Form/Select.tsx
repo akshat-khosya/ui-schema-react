@@ -1,17 +1,17 @@
-import { Container, Grid, TextField, Tooltip, Box, Typography } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
-import { UIObject } from '../../utils/jsonValidation';
+import React, { useContext, useEffect, useState } from 'react'
+import { UIObject } from '../../utils/jsonValidation'
+import { Box, Container, Grid, MenuItem, Select, SelectChangeEvent, Tooltip, Typography } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import GlobalContext from '../../context/GlobalContext';
 
-interface PROPS {
-    fields: UIObject;
 
+interface PROPS {
+    fields: UIObject
 }
 
-function InputField(props: PROPS) {
+function SelectField(props: PROPS) {
     const { formData, updateFormData } = useContext(GlobalContext);
-    const [value, setValue] = useState(props.fields.validate.defaultValue ? props.fields.validate.defaultValue : "");
+    const [value, setValue] = useState(typeof props.fields.validate.defaultValue === 'string' ? props.fields.validate.defaultValue : "");
     useEffect(() => {
         dataInitiator();
     }, []);
@@ -19,8 +19,7 @@ function InputField(props: PROPS) {
     const dataInitiator = () => {
         updateFormData(props.fields.jsonKey, props.fields.validate.defaultValue);
     };
-
-    const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const onChange = (e: SelectChangeEvent<string>) => {
         setValue(e.target.value)
         updateFormData(props.fields.jsonKey, e.target.value);
     }
@@ -44,11 +43,27 @@ function InputField(props: PROPS) {
                     </Box>
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField onChange={onChange} value={value} disabled={props.fields.validate.immutable} required={props.fields.validate.required} variant="outlined" fullWidth />
+                    <Select
+                        disabled={props.fields.validate.immutable}
+                        required={props.fields.validate.required}
+                        variant="outlined"
+                        fullWidth
+                        id="demo-simple-select"
+                        value={value}
+                        onChange={onChange}
+                    >
+                        {
+                            props.fields.validate.options && props.fields.validate.options.map((data, index) => {
+                                return (
+                                    <MenuItem key={`select-${index}`} value={data.value}>{data.value}</MenuItem>
+                                )
+                            })
+                        }
+                    </Select>
                 </Grid>
             </Grid>
         </Container>
     );
 }
 
-export default InputField;
+export default SelectField

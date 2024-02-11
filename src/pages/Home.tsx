@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import JsonEditor from '../components/JsonEditor';
 import { Typography } from '@mui/material';
 import JsonForm from '../components/JsonForm';
+import DynamicForm from '../components/DynamicForm';
 
 function Home() {
 
@@ -26,11 +27,12 @@ function Home() {
                     textAlign: 'center',
                     color: 'rgba(0, 0, 0, 0.87)',
                     height: '100%',
-                    overflowY: 'auto',
+                    overflowY: 'auto'
                 }}>
                     <Typography>JSON Rendering Form</Typography>
 
-                    <JsonForm />
+                    {/* <JsonForm /> */}
+                    <DynamicForm />
                 </Paper>
             </Grid>
         </Grid>

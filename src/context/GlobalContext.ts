@@ -5,7 +5,7 @@ interface GlobalContextValue {
   uiJson: UIObject[];
   setUIJSON: (data: UIObject[]) => void;
   formData: {};
-  updateFormData: (jsonKey: string, value: string) => void;
+  updateFormData: (jsonKey: string, value: any) => void;
   emptyFormData: () => void;
 }
 const GlobalContext = createContext<GlobalContextValue>({

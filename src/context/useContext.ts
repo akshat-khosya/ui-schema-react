@@ -8,7 +8,7 @@ export const useContextData = () => {
   );
   const [formData, setFormData] = useState({});
 
-  const updateFormData = (jsonKey: string, value: string) => {
+  const updateFormData = (jsonKey: string, value: any) => {
     setFormData((prevState) => ({
       ...prevState,
       [jsonKey]: value,
